@@ -1,0 +1,231 @@
+:root {
+  --surface: #eef1f7;
+  --card: #ffffff;
+  --text: #7e60d0;
+  --muted: #7e60d0;
+  --border: #dde2ec;
+  --brand: #e092dc;
+  --brand-hover: #ec9be8;
+  --success: #2b8a4f;
+  --danger: #c93c3c;
+  --danger-soft: #fdecec;
+
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 16px;
+  --sp-4: 24px;
+  --sp-5: 32px;
+  --sp-6: 48px;
+
+  --radius: 10px;
+  --shadow: 0 4px 16px rgba(28, 34, 48, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: var(--sp-6) var(--sp-3);
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: var(--text);
+  background-color: var(--surface);
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+button,
+input {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.app {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: var(--sp-5);
+  background-color: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.appHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+}
+
+h1 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.counter {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.taskForm label {
+  display: block;
+  margin-bottom: var(--sp-2);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.inputRow {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.inputRow input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--sp-2) var(--sp-3);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 180ms ease-out;
+}
+
+.inputRow input:focus {
+  outline: none;
+  border-color: var(--brand);
+}
+
+.addButton {
+  padding: var(--sp-2) var(--sp-4);
+  font-weight: 600;
+  color: var(--card);
+  background-color: var(--brand);
+  border: none;
+  border-radius: var(--radius);
+  transition: background-color 180ms ease-out;
+}
+
+.addButton:hover,
+.addButton:focus {
+  background-color: var(--brand-hover);
+}
+
+.taskForm.invalid input {
+  border-color: var(--danger);
+}
+
+.message {
+  min-height: var(--sp-4);
+  margin-top: var(--sp-1);
+  font-size: 0.875rem;
+  color: var(--danger);
+}
+
+.taskList {
+  margin: var(--sp-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-2);
+  border-top: 1px solid var(--border);
+  cursor: pointer;
+  transition: background-color 150ms ease-out;
+}
+
+.task:hover {
+  background-color: var(--surface);
+}
+
+.check {
+  flex-shrink: 0;
+  width: var(--sp-4);
+  height: var(--sp-4);
+  padding: 0;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--card);
+  background-color: var(--card);
+  border: 2px solid var(--muted);
+  border-radius: 50%;
+  transition: background-color 150ms ease-out, border-color 150ms ease-out;
+}
+
+.check:hover,
+.check:focus {
+  border-color: var(--success);
+}
+
+.taskText {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.delete {
+  flex-shrink: 0;
+  padding: var(--sp-1) var(--sp-2);
+  font-size: 0.875rem;
+  color: var(--muted);
+  background-color: transparent;
+  border: none;
+  border-radius: var(--radius);
+  transition: background-color 150ms ease-out, color 150ms ease-out;
+}
+
+.delete:hover,
+.delete:focus {
+  color: var(--danger);
+  background-color: var(--danger-soft);
+}
+
+.task.done .check {
+  background-color: var(--success);
+  border-color: var(--success);
+}
+
+.task.done .taskText {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.emptyState {
+  padding: var(--sp-5) var(--sp-3);
+  text-align: center;
+  color: var(--muted);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: var(--sp-4) var(--sp-2);
+  }
+
+  .app {
+    padding: var(--sp-4) var(--sp-3);
+  }
+
+  .appHeader {
+    flex-direction: column;
+    gap: var(--sp-1);
+  }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/code.css">
+    <title>To-Do List</title>
+  </head>
+
+  <body>
+    <main class="app">
+      <header class="appHeader">
+        <h1>My tasks</h1>
+        <p id="counter" class="counter"></p>
+      </header>
+
+      <form id="taskForm" class="taskForm">
+        <label for="taskInput">New task</label>
+        <div class="inputRow">
+          <input type="text" id="taskInput" placeholder="What do you need to do?">
+          <button type="submit" class="addButton">Add</button>
+        </div>
+        <p id="message" class="message"></p>
+      </form>
+
+      <ul id="taskList" class="taskList"></ul>
+
+      <p id="emptyState" class="emptyState">No tasks yet. Add your first one above.</p>
+    </main>
+
+    <script src="scripts/code.js"></script>
+  </body>
+</html>
