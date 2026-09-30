@@ -2,7 +2,13 @@ const STORAGE_KEY = 'tasks';
 
 const taskForm = document.querySelector('#taskForm');
 const taskInput = document.querySelector('#taskInput');
-const taskList = document.querySelector('#taskList');
+const sections = document.querySelector('#sections');
+const pendingList = document.querySelector('#pendingList');
+const completedList = document.querySelector('#completedList');
+const pendingCount = document.querySelector('#pendingCount');
+const completedCount = document.querySelector('#completedCount');
+const pendingEmpty = document.querySelector('#pendingEmpty');
+const completedEmpty = document.querySelector('#completedEmpty');
 const message = document.querySelector('#message');
 const counter = document.querySelector('#counter');
 const emptyState = document.querySelector('#emptyState');
@@ -91,11 +97,22 @@ function taskToListItem(task) {
   return li;
 }
 
-function renderTasks() {
-  taskList.innerHTML = '';
-  tasks
+function renderSection(list, countLabel, emptyLabel, sectionTasks) {
+  list.innerHTML = '';
+  sectionTasks
     .map(taskToListItem)
-    .forEach((li) => taskList.append(li));
+    .forEach((li) => list.append(li));
+
+  countLabel.textContent = sectionTasks.length;
+  emptyLabel.classList.toggle('hidden', sectionTasks.length > 0);
+}
+
+function renderTasks() {
+  const pendingTasks = tasks.filter((task) => !task.done);
+  const completedTasks = tasks.filter((task) => task.done);
+
+  renderSection(pendingList, pendingCount, pendingEmpty, pendingTasks);
+  renderSection(completedList, completedCount, completedEmpty, completedTasks);
 
   renderSummary();
 }
@@ -106,9 +123,11 @@ function renderSummary() {
   if (tasks.length === 0) {
     counter.textContent = 'Nothing planned yet';
     emptyState.classList.remove('hidden');
+    sections.classList.add('hidden');
   } else {
     counter.textContent = `${doneCount} of ${tasks.length} done`;
     emptyState.classList.add('hidden');
+    sections.classList.remove('hidden');
   }
 }
 
@@ -144,7 +163,7 @@ function handleListClick(e) {
 }
 
 taskForm.addEventListener('submit', handleSubmit);
-taskList.addEventListener('click', handleListClick);
+[pendingList, completedList].forEach((list) => list.addEventListener('click', handleListClick));
 taskInput.addEventListener('input', clearMessage);
 
 renderTasks();
