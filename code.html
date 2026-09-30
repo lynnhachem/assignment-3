@@ -23,7 +23,25 @@
         <p id="message" class="message"></p>
       </form>
 
-      <ul id="taskList" class="taskList"></ul>
+      <div id="sections" class="sections">
+        <section class="taskSection">
+          <h2 class="sectionTitle">
+            Pending
+            <span id="pendingCount" class="sectionCount">0</span>
+          </h2>
+          <ul id="pendingList" class="taskList"></ul>
+          <p id="pendingEmpty" class="sectionEmpty">Nothing pending. You're all caught up!</p>
+        </section>
+
+        <section class="taskSection completedSection">
+          <h2 class="sectionTitle">
+            Completed
+            <span id="completedCount" class="sectionCount">0</span>
+          </h2>
+          <ul id="completedList" class="taskList"></ul>
+          <p id="completedEmpty" class="sectionEmpty">No completed tasks yet.</p>
+        </section>
+      </div>
 
       <p id="emptyState" class="emptyState">No tasks yet. Add your first one above.</p>
     </main>
