@@ -16,8 +16,13 @@ function save() {
 }
 
 function load() {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  return JSON.parse(raw) || [];
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return JSON.parse(raw) || [];
+  } catch (error) {
+    console.error('Could not load tasks from storage:', error);
+    return [];
+  }
 }
 
 
@@ -96,7 +101,7 @@ function renderTasks() {
 }
 
 function renderSummary() {
-  const doneCount = tasks.filter((task) => task.done).length;
+  const doneCount = tasks.reduce((count, task) => (task.done ? count + 1 : count), 0);
 
   if (tasks.length === 0) {
     counter.textContent = 'Nothing planned yet';
